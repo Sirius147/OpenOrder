@@ -95,11 +95,7 @@ curl -X POST http://localhost:8080/api/orders   -H "Content-Type: application/js
 ## 📈 향후 확장 아이디어
 
 - Outbox 패턴 + DB 트랜잭션 연동  
-- Avro + Schema Registry 적용  
-- OpenTelemetry 기반 분산 트레이싱  
 - Notification 실제 구현 (이메일/SMS/푸시)
 
 ---
 
-## 📝 License
-This project is licensed under the MIT License.
