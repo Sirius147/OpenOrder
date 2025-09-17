@@ -1,60 +1,33 @@
-# OpenOrder
+# 📑 OpenOrder
 ## kafka 이벤트 기반 msa 주문 처리 시스템
 
-# 🚀 MSA-Kafka-Lab
 
-MSA 아키텍처 + Kafka 이벤트 기반 통신 학습을 위한 실습 프로젝트입니다.  
-Redpanda(카프카 호환 브로커)와 Spring Boot 마이크로서비스를 통해  
-주문 → 재고 확인 → 알림 전송의 이벤트 흐름을 구현합니다.  
+**MSA** 아키텍처 + **Kafka 이벤트** 기반 통신 실습 프로젝트
+Redpanda(카프카 호환 브로커)와 Spring Boot msa를 통한
+주문 → 재고 확인 → 알림 전송의 이벤트 흐름  
 
 ---
 
-## 📑 프로젝트 개요
+### 주요 기능
+- **비동기 이벤트 기반 통신**
+- Kafka Producer/Consumer 구조로 이벤트 처리
+- Dead Letter Queue **(DLQ)** 로 장애 주문 처리
 
-### 목표
-- MSA 아키텍처 기본 구조 이해
-- 서비스 간 **비동기 이벤트 기반 통신** 구현
-- Kafka Producer/Consumer 사용법 실습
-- 장애 상황 처리 및 Dead Letter Queue(DLQ) 경험
-
-### 시나리오
+### 🏗️ MSA 아키텍처
 1. **Order-Service**  
-   - 사용자 주문 API → `order.created` 이벤트 발행  
+   - 사용자 주문 **POST /api/orders** → `order.created` 이벤트 발행  
 2. **Inventory-Service**  
    - `order.created` 소비 → 재고 확인  
    - 성공: `inventory.reserved`, 실패: `inventory.rejected` 발행  
-   - 장애 상황: 재시도 후 실패 시 `order.created.DLT`로 이동  
+   - 장애 상황: 재시도 후 실패 시 Topic `order.created.DLT`    
 3. **Notification-Service**  
-   - `inventory.*` 이벤트 구독 → 알림(로그 출력)
-
----
-
-## 🏗️ 아키텍처 구조
-
-```
-[ User ]
-   |
-   v
-[Order Service] -- produces --> (Kafka: order.created)
-                                 |
-                                 v
-                      [Inventory Service]
-                         |          |
-                         v          v
-            (Kafka: inventory.reserved / inventory.rejected)
-                                 |
-                                 v
-                      [Notification Service]
-
-* 장애 시:
-   order.created -> 재시도 실패 -> order.created.DLT
-```
+   - `inventory.*` 이벤트 구독 → 알림
 
 ---
 
 ## ⚙️ 기술 스택
 
-- **Java 17**, **Spring Boot 3.3.x**
+- **Java**, **Spring Boot 3.3.x**
 - **Spring Kafka**
 - **Docker Compose**
   - Redpanda (Kafka 호환 브로커)
@@ -77,22 +50,22 @@ msa-kafka-lab/
 ## ▶️ 실행 방법
 
 ### 1. 카프카 환경 실행
-```bash
+```cmd
 docker compose up -d
 ```
-- Kafka UI: [http://localhost:8081](http://localhost:8081) 접속 가능해야 합니다.  
+- Kafka UI: [http://localhost:8081](http://localhost:8081) 
 
 ### 2. 서비스 실행
 각 서비스 디렉토리(`order-service`, `inventory-service`, `notification-service`)에서 실행:
 ```bash
 ./gradlew bootRun
 ```
-- Order-Service → 8080  
-- Inventory-Service → 8082  
-- Notification-Service → 8083  
+- KafkaOrder → 8080  
+- KafkaInventory → 8082  
+- KafkaNotification → 8083  
 
-### 3. 주문 API 호출
-```bash
+### 3. 주문 API
+```
 curl -X POST http://localhost:8080/api/orders   -H "Content-Type: application/json"   -d '{"userId":42,"items":[{"sku":"ABC-001","qty":2}]}'
 ```
 
@@ -109,8 +82,8 @@ curl -X POST http://localhost:8080/api/orders   -H "Content-Type: application/js
 
 ## 🧪 장애 주입 & DLQ 확인
 
-테스트 실패 주문:
-```bash
+테스트 실패 주문: **sku에 Fail 넣음**
+```
 curl -X POST http://localhost:8080/api/orders   -H "Content-Type: application/json"   -d '{"userId":42,"items":[{"sku":"FAIL","qty":1}]}'
 ```
 
@@ -119,14 +92,6 @@ curl -X POST http://localhost:8080/api/orders   -H "Content-Type: application/js
 
 ---
 
-## 📌 학습 포인트
-
-- 서비스 간 **동기 REST 호출 대신 비동기 이벤트 기반 통신** 구조 경험  
-- **Kafka Producer/Consumer** 기초 학습  
-- **재시도 + DLQ 처리**로 안정성 확보  
-- Kafka UI를 통한 토픽/메시지 모니터링  
-
----
 
 ## 📈 향후 확장 아이디어
 
