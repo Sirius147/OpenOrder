@@ -8,7 +8,7 @@ spring:
       group-id: inventory-service
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      auto-offset-reset: earliest
+      auto-offset-reset: earliest # → 구독 처음 시작 시 가장 과거(earliest)부터 읽도록 설정
       properties:
         spring.json.trusted.packages: "*"
     producer:

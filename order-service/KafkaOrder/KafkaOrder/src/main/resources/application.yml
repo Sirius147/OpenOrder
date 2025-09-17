@@ -1,13 +1,12 @@
 server:
-  port: 8080
+  port: 8080  # service port
 spring:
-  application.name: order-service
+  application.name: order-service # service 이름 로깅, 추적에 사용
   kafka:
-    bootstrap-servers: localhost:19092
+    bootstrap-servers: localhost:19092 # kafka 브로커 접속 주소
     producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer # 메시지 키 직렬화 방식
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer   # 메시지 값 직렬화 방식 
 
-      # 주문 생성 -> ORDER.CREATE 발행
 
 
