@@ -92,9 +92,9 @@ curl -X POST http://localhost:8080/api/orders   -H "Content-Type: application/js
 ---
 
 
-## 📈 향후 확장 아이디어
+## 향후 확장 아이디어
 
-- Outbox 패턴 + DB 트랜잭션 연동  
+- DB 트랜잭션 연동  
 - Notification 실제 구현 (이메일/SMS/푸시)
 
 ---
