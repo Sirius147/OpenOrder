@@ -27,8 +27,7 @@ Redpanda(카프카 호환 브로커)와 Spring Boot msa를 통한
 
 ##  기술 스택
 
-![Java](https://img.shields.io/badge/Java-17-007396?style=for-the-badge&logo=openjdk&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/SpringBoot-3.x-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
 ![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-MSA-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
 ![Apache Kafka](https://img.shields.io/badge/Kafka-Event--Driven-231F20?style=for-the-badge&logo=apachekafka&logoColor=white)
 ![Redpanda](https://img.shields.io/badge/Redpanda-Streaming-FF4438?style=for-the-badge&logo=redpanda&logoColor=white)
