@@ -73,6 +73,9 @@ curl -X POST http://localhost:8080/api/orders   -H "Content-Type: application/js
 {"orderId":12345,"status":"PENDING"}
 ```
 
+<img width="1109" height="113" alt="주문요청 커맨드 및 응답 예시" src="https://github.com/user-attachments/assets/718a39b4-c228-479b-87a0-a44c05bb5571" />
+
+
 ### 4. 메시지 확인
 - Kafka UI에서 토픽 메시지 확인  
 - `inventory-service`, `notification-service` 로그 확인  
