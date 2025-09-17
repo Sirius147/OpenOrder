@@ -73,7 +73,25 @@ curl -X POST http://localhost:8080/api/orders   -H "Content-Type: application/js
 {"orderId":12345,"status":"PENDING"}
 ```
 
+* 주문 요청과 응답
+
 <img width="1109" height="113" alt="주문요청 커맨드 및 응답 예시" src="https://github.com/user-attachments/assets/718a39b4-c228-479b-87a0-a44c05bb5571" />
+
+* order.created topic
+
+<img width="1919" height="578" alt="topic_ordercreated" src="https://github.com/user-attachments/assets/0897bb01-b380-45e8-9a92-6696bbd8831f" />
+
+* 재고가 없어서 rejected
+
+<img width="1919" height="714" alt="재고가 없어서 정상요청 rejected 알림" src="https://github.com/user-attachments/assets/0a8ba5c9-1f31-4ae0-939c-1b1887c913f3" />
+
+* fail 요청 reserved 안됨
+<img width="1919" height="607" alt="fail요청은 reserved에 안 들어와 있음" src="https://github.com/user-attachments/assets/8079f24b-3b3e-4fbc-b69d-3891c9820347" />
+
+* dlt topic
+<img width="1919" height="679" alt="topic_dlt" src="https://github.com/user-attachments/assets/408d32a9-720b-49d2-83f5-2bb3290ac5af" />
+
+  
 
 
 ### 4. 메시지 확인
