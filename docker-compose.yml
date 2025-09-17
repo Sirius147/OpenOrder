@@ -1,0 +1,26 @@
+services:
+  redpanda:
+    image: redpandadata/redpanda:v23.3.14
+    command:
+      - redpanda start
+      - --overprovisioned
+      - --smp=1
+      - --memory=1G
+      - --reserve-memory=0M
+      - --node-id=0
+      - --check=false
+      - --kafka-addr=PLAINTEXT://0.0.0.0:9092,OUTSIDE://0.0.0.0:19092
+      - --advertise-kafka-addr=PLAINTEXT://redpanda:9092,OUTSIDE://localhost:19092
+    ports:
+      - "9092:9092"     # 컨테이너 내부 카프카 포트(기본)
+      - "19092:19092"   # 로컬에서 접속할 외부 포트(스프링은 이걸 사용)
+      - "9644:9644"     # redpanda admin API(지금은 안 씀)
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - "8081:8080"     # 웹 UI: http://localhost:8081
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: redpanda:9092
+    depends_on:
+      - redpanda

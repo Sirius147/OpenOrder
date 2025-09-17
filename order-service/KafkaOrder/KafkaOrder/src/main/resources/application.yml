@@ -1,0 +1,13 @@
+server:
+  port: 8080
+spring:
+  application.name: order-service
+  kafka:
+    bootstrap-servers: localhost:19092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+      # 주문 생성 -> ORDER.CREATE 발행
+
+
