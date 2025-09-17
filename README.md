@@ -13,7 +13,7 @@ Redpanda(카프카 호환 브로커)와 Spring Boot msa를 통한
 - Kafka Producer/Consumer 구조로 이벤트 처리
 - Dead Letter Queue **(DLQ)** 로 장애 주문 처리
 
-### 🏗️ MSA 아키텍처
+### MSA 아키텍처
 1. **Order-Service**  
    - 사용자 주문 **POST /api/orders** → `order.created` 이벤트 발행  
 2. **Inventory-Service**  
@@ -25,17 +25,17 @@ Redpanda(카프카 호환 브로커)와 Spring Boot msa를 통한
 
 ---
 
-## ⚙️ 기술 스택
+##  기술 스택
 
-- **Java**, **Spring Boot 3.3.x**
-- **Spring Kafka**
-- **Docker Compose**
-  - Redpanda (Kafka 호환 브로커)
-  - Kafka UI (토픽/메시지 모니터링)
+![Java](https://img.shields.io/badge/Java-17-007396?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/SpringBoot-3.x-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
+![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-MSA-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
+![Apache Kafka](https://img.shields.io/badge/Kafka-Event--Driven-231F20?style=for-the-badge&logo=apachekafka&logoColor=white)
+![Redpanda](https://img.shields.io/badge/Redpanda-Streaming-FF4438?style=for-the-badge&logo=redpanda&logoColor=white)
 
 ---
 
-## 📂 프로젝트 구조
+## 프로젝트 구조
 
 ```
 msa-kafka-lab/
@@ -80,7 +80,7 @@ curl -X POST http://localhost:8080/api/orders   -H "Content-Type: application/js
 
 ---
 
-## 🧪 장애 주입 & DLQ 확인
+##  장애 주입 & DLQ 확인
 
 테스트 실패 주문: **sku에 Fail 넣음**
 ```
